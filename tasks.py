@@ -2,11 +2,10 @@ from celery_app import celery
 from sentry import sentry_sdk
 
 # utility functions for video generation
-from utils.video_generation.get_pending_videos import get_pending_videos
-from utils.video_generation.generate_video import generate_video
-from utils.video_generation.download_video import download_video
-from utils.video_generation.upload_video import upload_video
-from utils.video_generation.update_video_status_and_url import update_video_status_and_url
+from modules.video_generation.generate_video import generate_video
+from modules.video_generation.download_video import download_video
+from modules.video_generation.upload_video import upload_video
+from modules.video_generation.update_video_status_and_url import update_video_status_and_url
 
 import time
 
@@ -44,7 +43,6 @@ def run_video_generation(video):
         sentry_sdk.capture_exception(e)
         print(f"Error processing video with id {video.get('id')}: {e}")
 
-
 demo_video = {'id': '3825853e-be8b-40a0-a499-e4001ed4e949', 'video_idea': None, 'duration': None, 'script': 'Quick tips for daily productivity', 'music': None, 'thumbnail': None, 'hashtags': ['#productivity', '#tips', '#daily'], 'caption': 'Boost your productivity with these tips', 'status': 'pending', 'url': None, 'created_at': '2025-07-21T04:29:49.578902+00:00', 'updated_at': '2025-07-21T04:29:49.578902+00:00'}
 
 print("=============================================================================================")
@@ -59,5 +57,4 @@ print(f"completion time: {end_time - start_time}")
 
 # celery -A celery_app worker --loglevel=info --pool=solo
 # celery -A celery_app beat --loglevel=info
-# git commit -m"refactoring video generation: made the run_video_generation function only handle a single video object"
 
