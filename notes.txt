@@ -1,0 +1,17 @@
+-get the video idea
+-gnerate the video using hey gen
+-save the video to supabase storage
+
+1. Get all video ideas with status = 'pending'
+→ So you only work on unprocessed ones.
+
+2. For each video idea:
+Update status to 'processing' ✅
+
+Generate video from data ✅
+
+Upload video to Supabase Storage ✅
+
+If upload is successful, update status to 'completed' and store the video URL ✅
+
+If it fails, update status to 'failed' ❌
