@@ -1,14 +1,16 @@
-# from celery_app import celery
-from all_tasks.video_generation import get_pending_videos, generate_video, download_video, upload_video, update_video_status_and_url
+from celery_app import celery
+
+# utility functions for video generation
+from utils.video_generation.get_pending_videos import get_pending_videos
+from utils.video_generation.generate_video import generate_video
+from utils.video_generation.download_video import download_video
+from utils.video_generation.upload_video import upload_video
+from utils.video_generation.update_video_status_and_url import update_video_status_and_url
+
 import time
 
 # @celery.task
-# def run_video_generation():
-#     pass
-
-
-
-def video_generation():
+def run_video_generation():
     pending_videos = get_pending_videos()
     print("pending_videos=============")
     print(pending_videos)
@@ -44,7 +46,7 @@ print("=========================================================================
 start_time = time.time()
 print(f"start time: {start_time}")
 
-video_generation()
+run_video_generation()
 
 end_time = time.time()
 print("=============================================================================================")
