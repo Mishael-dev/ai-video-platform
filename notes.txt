@@ -15,3 +15,9 @@ Upload video to Supabase Storage ✅
 If upload is successful, update status to 'completed' and store the video URL ✅
 
 If it fails, update status to 'failed' ❌
+
+platforms
+supabase
+sentry
+upstash prolly
+webbooks site
