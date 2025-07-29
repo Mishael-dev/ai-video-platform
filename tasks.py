@@ -9,9 +9,6 @@ from modules.video_generation.update_video_status_and_url import update_video_st
 
 import time
 
-import uuid
-print(f"--- STARTING VIDEO GENERATION TASK --- {uuid.uuid4()}")
-
 @celery.task
 def run_video_generation(video):
     try:

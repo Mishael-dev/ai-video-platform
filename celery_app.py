@@ -4,9 +4,10 @@ from sentry import sentry_sdk
 
 celery = Celery(
     "video_tasks",
-    broker="redis://localhost:6379/0",
-    backend="redis://localhost:6379/0"
+    broker="rediss://default:f4371798813641dc9ddcd2c1b24ee2d9@gusc1-honest-bluejay-32297.upstash.io:32297/?ssl_cert_reqs=required",
+    backend="rediss://default:f4371798813641dc9ddcd2c1b24ee2d9@gusc1-honest-bluejay-32297.upstash.io:32297/?ssl_cert_reqs=required"
 )
+
 import tasks 
 
 celery.conf.timezone = "Africa/Lagos"
