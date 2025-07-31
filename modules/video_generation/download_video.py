@@ -2,6 +2,9 @@ import requests
 from env import HEYGEN_API_KEY
 import time
 from sentry import sentry_sdk
+import os
+
+os.makedirs("videos", exist_ok=True) 
 
 def download_video(video_id, video_fileid):
     headers = {
@@ -10,6 +13,7 @@ def download_video(video_id, video_fileid):
 
     video_status_url = f"https://api.heygen.com/v1/video_status.get?video_id={video_id}"
     video_filename = f"{video_fileid}.mp4"
+    video_filepath = os.path.join("videos", video_filename)
 
     try:
         while True:
@@ -29,7 +33,7 @@ def download_video(video_id, video_fileid):
                 )
 
                 video_content = requests.get(video_url).content
-                with open(video_filename, "wb") as f:
+                with open(video_filepath, "wb") as f:
                     f.write(video_content)
                 return video_filename
 

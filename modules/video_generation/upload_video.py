@@ -1,9 +1,11 @@
 from db import supabase
 from sentry import sentry_sdk
+import os
 
 def upload_video(file_name):
     try:
-        with open(file_name, "rb") as f:
+        video_filepath = os.path.join("videos", file_name)
+        with open(video_filepath, "rb") as f:
             response = (
                 supabase.storage
                 .from_("generated-videos")

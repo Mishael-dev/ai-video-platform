@@ -34,3 +34,6 @@ print(f"completion time: {end_time - start_time}")
 # celery -A celery_app worker --loglevel=info --pool=solo
 # celery -A celery_app beat --loglevel=info
 
+
+# docker build -t celery-worker -f Dockerfile.worker .
+# docker build -t fastapi-server -f Dockerfile.api .

@@ -13,9 +13,20 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application's code into the container at /app
 COPY . .
 
+# Create the videos directory at root level and set up user permissions
+RUN mkdir -p /videos
+
 # Set a non-root user for security
 RUN useradd --create-home appuser
+
+# Change ownership of the app directory to appuser
+RUN chown -R appuser:appuser /app
+
+# Change ownership of the videos directory to appuser
+RUN chown -R appuser:appuser /videos
+
+# Switch to non-root user
 USER appuser
 
-# Expose the port the app runs on
-EXPOSE 8000
+# Command to run the Celery worker
+CMD ["celery", "-A", "celery_app.celery", "worker", "--loglevel=info"]
