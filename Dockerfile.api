@@ -13,8 +13,19 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application's code into the container at /app
 COPY . .
 
+# Create the videos directory in /app before switching users
+RUN mkdir -p /app/videos
+
+# Create the videos directory in /app before switching users
+RUN mkdir -p /app/videos
+
 # Set a non-root user for security
 RUN useradd --create-home appuser
+
+# Change ownership of the entire app directory (including videos) to appuser
+RUN chown -R appuser:appuser /app
+
+# Switch to non-root user
 USER appuser
 
 # Expose the port the app runs on
